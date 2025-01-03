@@ -8,7 +8,7 @@ export default {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './constants/**/*.{ts,tsx}',
-    './node_modules/@nextui-org/theme/dist/components/(button|input|ripple|spinner|form).js',
+    './node_modules/@nextui-org/theme/dist/components/(button|drawer|input|ripple|spinner|modal|form).js',
   ],
   prefix: '',
   theme: {
