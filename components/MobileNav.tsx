@@ -1,21 +1,22 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-} from '@nextui-org/drawer';
-import { Button } from '@nextui-org/button';
-import useDisclosures from '@nextui-org/use-disclosure';
-import Image from 'next/image';
-import Link from 'next/link';
-import { sidebarLinks } from '@/constants';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import Footer from './Footer';
+} from "@nextui-org/drawer";
+import { Button } from "@nextui-org/button";
+import useDisclosures from "@nextui-org/use-disclosure";
+import Image from "next/image";
+import Link from "next/link";
+import { sidebarLinks } from "@/constants";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import Footer from "./Footer";
+import PlaidLink from "./PlaidLink";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +33,9 @@ const MobileNav = ({ user }: MobileNavProps) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -82,8 +83,8 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   <Link
                     href={item.route}
                     key={item.label}
-                    className={cn('mobilenav-sheet_close w-full', {
-                      'bg-bank-gradient': isActive,
+                    className={cn("mobilenav-sheet_close w-full", {
+                      "bg-bank-gradient": isActive,
                     })}
                   >
                     <Image
@@ -91,11 +92,11 @@ const MobileNav = ({ user }: MobileNavProps) => {
                       alt={item.label}
                       width={20}
                       height={20}
-                      className={cn({ 'brightness-[3] invert-0': isActive })}
+                      className={cn({ "brightness-[3] invert-0": isActive })}
                     />
                     <p
-                      className={cn('text-16 font-semibold text-black-2', {
-                        'text-white': isActive,
+                      className={cn("text-16 font-semibold text-black-2", {
+                        "text-white": isActive,
                       })}
                     >
                       {item.label}
@@ -103,6 +104,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   </Link>
                 );
               })}
+              <PlaidLink user={user} />
             </nav>
             <Footer user={user} type="mobile" />
           </div>

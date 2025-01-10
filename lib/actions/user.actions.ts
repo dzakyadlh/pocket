@@ -14,7 +14,6 @@ import {
 import { plaidClient } from "@/lib/plaid";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
-// import { addFundingSource, createDwollaCustomer } from './dwolla.actions';
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -139,21 +138,22 @@ export const logoutAccount = async () => {
 
 export const createLinkToken = async (user: User) => {
   try {
+    // Create a link token PARAMS
     const tokenParams = {
+      client_name: `${user.firstName} ${user.lastName}`,
+      products: [Products.Auth, Products.Transactions],
+
+      country_codes: [CountryCode.Us],
+      language: "en",
       user: {
         client_user_id: user.$id,
       },
-      client_name: `${user.firstName} ${user.lastName}`,
-      products: ["auth"] as Products[],
-      language: "en",
-      country_codes: ["US"] as CountryCode[],
     };
-
     const response = await plaidClient.linkTokenCreate(tokenParams);
-
     return parseStringify({ linkToken: response.data.link_token });
   } catch (error) {
-    console.log(error);
+    console.error("Error creating link token:", error);
+    return null;
   }
 };
 

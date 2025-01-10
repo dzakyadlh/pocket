@@ -1,20 +1,21 @@
-'use client';
+"use client";
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { Button } from './ui/button';
-import { useRouter } from 'next/navigation';
+import React, { useCallback, useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 import {
   PlaidLinkOnSuccess,
   PlaidLinkOptions,
   usePlaidLink,
-} from 'react-plaid-link';
+} from "react-plaid-link";
 import {
   createLinkToken,
   exchangePublicToken,
-} from '@/lib/actions/user.actions';
+} from "@/lib/actions/user.actions";
+import Image from "next/image";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         publicToken: public_token,
         user,
       });
-      router.push('/');
+      router.push("/");
     },
     [user]
   );
@@ -46,7 +47,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   return (
     <>
-      {variant === 'primary' ? (
+      {variant === "primary" ? (
         <Button
           className="plaidlink-primary"
           onClick={() => open()}
@@ -54,10 +55,32 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         >
           Connect Bank
         </Button>
-      ) : variant === 'ghost' ? (
-        <Button className="">Connect bank</Button>
+      ) : variant === "ghost" ? (
+        <Button
+          className="plaidlink-ghost"
+          onClick={() => open()}
+          variant="ghost"
+        >
+          <Image
+            src="/icons/connect-bank.svg"
+            alt="connect bank"
+            width={24}
+            height={24}
+          />
+          <p className="hidden text-[16px] font-semibold text-black-2 xl:block">
+            Connect bank
+          </p>
+        </Button>
       ) : (
-        <Button className="">Connect bank</Button>
+        <Button className="plaidlink-default" onClick={() => open()}>
+          <Image
+            src="/icons/connect-bank.svg"
+            alt="connect bank"
+            width={24}
+            height={24}
+          />
+          <p className="text-[16px] font-semibold text-black-2">Connect bank</p>
+        </Button>
       )}
     </>
   );

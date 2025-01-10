@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { sidebarLinks } from '@/constants';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
-import Footer from './Footer';
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+import Footer from "./Footer";
+import PlaidLink from "./PlaidLink";
 
 const Sidebar = ({ user }: SiderbarProps) => {
   const pathname = usePathname();
@@ -32,8 +33,8 @@ const Sidebar = ({ user }: SiderbarProps) => {
             <Link
               href={item.route}
               key={item.label}
-              className={cn('sidebar-link', {
-                'bg-bank-gradient': isActive,
+              className={cn("sidebar-link", {
+                "bg-bank-gradient": isActive,
               })}
             >
               <div className="relative size-6">
@@ -41,15 +42,16 @@ const Sidebar = ({ user }: SiderbarProps) => {
                   src={item.imgURL}
                   alt={item.label}
                   fill
-                  className={cn({ 'brightness-[3] invert-0': isActive })}
+                  className={cn({ "brightness-[3] invert-0": isActive })}
                 />
               </div>
-              <p className={cn('sidebar-label', { '!text-white': isActive })}>
+              <p className={cn("sidebar-label", { "!text-white": isActive })}>
                 {item.label}
               </p>
             </Link>
           );
         })}
+        <PlaidLink user={user} variant="ghost" />
       </nav>
       <Footer user={user} />
     </section>
