@@ -1,20 +1,22 @@
-import type { Metadata } from 'next';
-import { Inter, IBM_Plex_Serif } from 'next/font/google';
-import './globals.css';
+export const dynamic = "force-dynamic";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+import type { Metadata } from "next";
+import { Inter, IBM_Plex_Serif } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const ibmPlexSerif = IBM_Plex_Serif({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-ibm-plex-serif',
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-ibm-plex-serif",
 });
 
 export const metadata: Metadata = {
-  title: 'Pocket',
-  description: 'Pocket is a modern banking platform',
+  title: "Pocket",
+  description: "Pocket is a modern banking platform",
   icons: {
-    icon: '/icons/logo.svg',
+    icon: "/icons/logo.svg",
   },
 };
 
